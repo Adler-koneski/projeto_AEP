@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script src="js/auth.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Estágios</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Gestão de Estágios</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="alunos.html">Alunos</a>
+      <a href="campos.html">Campos de Estágio</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="estagios.html" class="active">Estágios</a>
+      <a href="#" id="logout-button">Sair <span class="material-icons">logout</span></a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="form-section">
+      <h2>Registrar Estágio</h2>
+      <form id="formEstagio">
+        <select id="aluno" required>
+          <option value="">Selecione o Aluno</option>
+        </select>
+        <select id="vaga" required>
+          <option value="">Selecione a Vaga</option>
+        </select>
+        <select id="status">
+          <option value="Em andamento">Em andamento</option>
+          <option value="Concluído">Concluído</option>
+          <option value="Interrompido">Interrompido</option>
+        </select>
+        <input type="date" id="inicio" placeholder="Data de Início">
+        <input type="date" id="termino" placeholder="Data de Término">
+        <textarea id="avaliacao" placeholder="Avaliação do Supervisor"></textarea>
+        <textarea id="ocorrencias" placeholder="Ocorrências (faltas, atrasos, incidentes)"></textarea>
+        <button type="submit">Salvar Estágio</button>
+      </form>
+    </section>
+
+    <section class="list-section">
+      <h2>Estágios Registrados</h2>
+      <table id="tabelaEstagios">
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Vaga</th>
+            <th>Status</th>
+            <th>Início</th>
+            <th>Término</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/estagios.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

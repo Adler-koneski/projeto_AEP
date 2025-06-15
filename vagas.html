@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script src="js/auth.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Vagas de Estágio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Vagas de Estágio - Estágios Saúde</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="alunos.html">Alunos</a>
+      <a href="campos.html">Campos de Estágio</a>
+      <a href="vagas.html" class="active">Vagas</a>
+      <a href="estagios.html">Estágios</a>
+      <a href="#" id="logout-button">Sair <span class="material-icons">logout</span></a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="form-section">
+      <h2>Cadastrar Vaga</h2>
+      <form id="formVaga">
+        <input type="text" id="area" placeholder="Área da Saúde (ex: Enfermagem)" required>
+        <select id="campo" required>
+          <option value="">Selecione o Campo de Estágio</option>
+        </select>
+        <input type="number" id="quantidade" placeholder="Número de Vagas" required>
+        <input type="text" id="cargaHoraria" placeholder="Carga Horária">
+        <input type="text" id="periodo" placeholder="Período do Estágio">
+        <input type="text" id="requisitos" placeholder="Requisitos Específicos">
+        <button type="submit">Salvar Vaga</button>
+      </form>
+    </section>
+
+    <section class="list-section">
+      <h2>Vagas Cadastradas</h2>
+      <table id="tabelaVagas">
+        <thead>
+          <tr>
+            <th>Área</th>
+            <th>Campo</th>
+            <th>Qtd.</th>
+            <th>Carga</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/vagas.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+/* Estilo para o Projeto de Gestão de Estágios */
+
+/* 1. Reset e Configurações Globais */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+  --cor-primaria: #0d47a1; /* Azul escuro para o cabeçalho */
+  --cor-secundaria: #1565c0; /* Azul um pouco mais claro */
+  --cor-destaque: #1976d2; /* Azul para botões e links */
+  --cor-fundo: #f4f7f9;     /* Cinza bem claro para o fundo da página */
+  --cor-container: #ffffff; /* Branco para os painéis */
+  --cor-texto: #333333;
+  --cor-texto-claro: #ffffff;
+  --cor-sombra: rgba(0, 0, 0, 0.1);
+  --cor-borda: #e0e0e0;
+  --cor-sucesso: #28a745;
+  --cor-perigo: #dc3545;
+  --raio-borda: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+/* 2. Cabeçalho e Navegação */
+header {
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-claro);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 5px var(--cor-sombra);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+header nav a {
+  color: var(--cor-texto-claro);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+header nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--cor-texto-claro);
+  transition: width 0.3s ease;
+}
+
+header nav a:hover {
+  color: #bbdefb;
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active {
+  font-weight: 700;
+  color: #fff;
+}
+
+nav a.active::after {
+  width: 100%;
+  background-color: #fff;
+}
+
+/* Estilo para o botão de Sair */
+#logout-button {
+  background-color: var(--cor-perigo);
+  padding: 8px 15px;
+  border-radius: var(--raio-borda);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#logout-button:hover {
+  background-color: #c82333;
+  color: var(--cor-texto-claro) !important;
+}
+#logout-button .material-icons {
+  font-size: 1rem;
+}
+
+
+/* 3. Layout Principal e Seções */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.form-section, .list-section {
+  background-color: var(--cor-container);
+  padding: 2rem;
+  border-radius: var(--raio-borda);
+  box-shadow: 0 2px 10px var(--cor-sombra);
+}
+
+h2 {
+  color: var(--cor-primaria);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--cor-fundo);
+  padding-bottom: 0.5rem;
+}
+
+/* 4. Formulários */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+fieldset {
+  border: 1px solid var(--cor-borda);
+  padding: 1rem;
+  border-radius: var(--raio-borda);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+legend {
+  color: var(--cor-secundaria);
+  font-weight: 600;
+  padding: 0 0.5rem;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* 5. Botões */
+button[type="submit"] {
+  background-color: var(--cor-sucesso);
+  color: var(--cor-texto-claro);
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--raio-borda);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  align-self: flex-end;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* 6. Tabela */
+.list-section {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto-claro);
+}
+
+th, td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+th {
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--cor-fundo);
+}
+
+tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+td:last-child {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+td button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: var(--raio-borda);
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: opacity 0.3s ease;
+}
+
+td button:hover {
+  opacity: 0.85;
+}
+
+td button[onclick*="editar"] {
+  background-color: var(--cor-destaque);
+}
+
+td button[onclick*="excluir"] {
+  background-color: var(--cor-perigo);
+}
+
+
+/* 7. Estilos do Dashboard */
+.dashboard {
+  grid-column: 1 / -1; 
+  background-color: var(--cor-container);
+  padding: 2rem;
+  border-radius: var(--raio-borda);
+  box-shadow: 0 2px 10px var(--cor-sombra);
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background: linear-gradient(135deg, var(--cor-secundaria), var(--cor-primaria));
+  color: var(--cor-texto-claro);
+  padding: 1.5rem;
+  border-radius: var(--raio-borda);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon .material-icons {
+  font-size: 3.5rem;
+  opacity: 0.8;
+}
+
+.card-info p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.card-link {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: var(--cor-texto-claro);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.card-link:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 8. Responsividade */
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  header nav a {
+    margin-left: 0;
+  }
+}

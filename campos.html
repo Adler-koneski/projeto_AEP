@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script src="js/auth.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Campos de Estágio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Campos de Estágio - Estágios Saúde</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="alunos.html">Alunos</a>
+      <a href="campos.html" class="active">Campos de Estágio</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="estagios.html">Estágios</a>
+      <a href="#" id="logout-button">Sair <span class="material-icons">logout</span></a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="form-section">
+      <h2>Cadastrar Campo de Estágio</h2>
+      <form id="formCampo">
+        <input type="text" id="nome" placeholder="Nome da Instituição" required>
+        <input type="text" id="endereco" placeholder="Endereço" required>
+        <input type="text" id="contato" placeholder="Contato" required>
+        <input type="text" id="cnpj" placeholder="CNPJ">
+        <select id="tipo">
+          <option value="">Tipo de Instituição</option>
+          <option value="Hospital">Hospital</option>
+          <option value="Clínica">Clínica</option>
+          <option value="Laboratório">Laboratório</option>
+          <option value="Unidade Básica">Unidade Básica</option>
+        </select>
+        <button type="submit">Salvar Campo</button>
+      </form>
+    </section>
+
+    <section class="list-section">
+      <h2>Campos Cadastrados</h2>
+      <table id="tabelaCampos">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Contato</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/campos.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

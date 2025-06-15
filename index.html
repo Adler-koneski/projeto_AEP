@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script src="js/auth.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Gestão de Estágios Saúde</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Gestão de Estágios - Saúde</h1>
+    <nav>
+      <a href="index.html" class="active">Início</a>
+      <a href="alunos.html">Alunos</a>
+      <a href="campos.html">Campos de Estágio</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="estagios.html">Estágios</a>
+      <a href="#" id="logout-button">Sair <span class="material-icons">logout</span></a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="dashboard">
+      <h2>Painel de Controle</h2>
+      <div class="dashboard-cards">
+        
+        <div class="card">
+          <div class="card-icon"><span class="material-icons">school</span></div>
+          <div class="card-info">
+            <p>Alunos Cadastrados</p>
+            <span id="total-alunos" class="card-number">0</span>
+          </div>
+          <a href="alunos.html" class="card-link">Gerenciar</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><span class="material-icons">corporate_fare</span></div>
+          <div class="card-info">
+            <p>Campos de Estágio</p>
+            <span id="total-campos" class="card-number">0</span>
+          </div>
+           <a href="campos.html" class="card-link">Gerenciar</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><span class="material-icons">work</span></div>
+          <div class="card-info">
+            <p>Vagas Abertas</p>
+            <span id="total-vagas" class="card-number">0</span>
+          </div>
+           <a href="vagas.html" class="card-link">Gerenciar</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><span class="material-icons">assignment_ind</span></div>
+          <div class="card-info">
+            <p>Estágios Ativos</p>
+            <span id="total-estagios-ativos" class="card-number">0</span>
+          </div>
+           <a href="estagios.html" class="card-link">Gerenciar</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/dashboard.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

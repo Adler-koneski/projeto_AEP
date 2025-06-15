@@ -1,0 +1,66 @@
+/* Estilos para a página de login */
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+}
+
+.login-container {
+  width: 100%;
+  padding: 2rem;
+}
+
+.login-box {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: var(--cor-container);
+  border-radius: var(--raio-borda);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.login-box h1 {
+  color: var(--cor-primaria);
+  margin-bottom: 0.5rem;
+}
+
+.login-box p {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.login-box .input-group {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.login-box label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--cor-secundaria);
+}
+
+.login-box input {
+  width: 100%;
+}
+
+.login-box button[type="submit"] {
+  width: 100%;
+  align-self: center;
+  margin-top: 1rem;
+}
+
+.login-box button[type="submit"]:hover {
+  background-color: var(--cor-secundaria);
+}
+
+.error-message {
+  color: var(--cor-perigo);
+  margin-top: 1rem;
+  font-weight: 600;
+  min-height: 20px;
+}
