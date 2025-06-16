@@ -281,8 +281,11 @@ td button[onclick*="gerenciarDocumentos"] {
   color: #333;
 }
 
-td button[onclick*="gerenciarSupervisores"] {
-    background-color: var(--cor-info);
+
+/* VERSÃO MAIS FORTE E ESPECÍFICA */
+#tabelaCampos td button[onclick*="abrirModalSupervisores"] {
+    background-color: var(--cor-info) !important;
+    color: #ffffff !important;
 }
 
 td button[onclick*="candidatarVaga"] {
