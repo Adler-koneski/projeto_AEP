@@ -51,7 +51,7 @@ function atualizarTabelaVagas() {
       <td>${vaga.campo}</td>
       <td>${vaga.quantidade}</td>
       <td>${vaga.cargaHoraria}</td>
-      <td>${acoesHtml}</td>
+      <td><div class="actions-container">${acoesHtml}</div></td>
     `;
     tbody.appendChild(tr);
   });
@@ -86,6 +86,8 @@ document.getElementById('formVaga').addEventListener('submit', function(e) {
 
   const id = this.getAttribute('data-id') || gerarId();
   const usuarioLogado = sessionStorage.getItem('usuarioLogado');
+  const vagas = carregarVagas();
+  const existente = vagas.find(v => v.id === id);
 
   const vaga = {
     id,
@@ -95,10 +97,9 @@ document.getElementById('formVaga').addEventListener('submit', function(e) {
     cargaHoraria: document.getElementById('cargaHoraria').value,
     periodo: document.getElementById('periodo').value,
     requisitos: document.getElementById('requisitos').value,
-    createdBy: this.getAttribute('data-id') ? carregarVagas().find(v => v.id === id).createdBy : usuarioLogado
+    createdBy: existente ? existente.createdBy : usuarioLogado
   };
 
-  let vagas = carregarVagas();
   const existenteIndex = vagas.findIndex(v => v.id === id);
 
   if (existenteIndex >= 0) {

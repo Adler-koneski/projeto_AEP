@@ -16,6 +16,8 @@
   --cor-borda: #e0e0e0;
   --cor-sucesso: #28a745;
   --cor-perigo: #dc3545;
+  --cor-aviso: #ffc107;
+  --cor-info: #6f42c1; /* Roxo para o botão de supervisor */
   --raio-borda: 8px;
 }
 
@@ -123,6 +125,10 @@ nav a.active::after {
   gap: 2rem;
 }
 
+.full-width-container {
+    grid-column: 1 / -1;
+}
+
 .form-section, .list-section {
   background-color: var(--cor-container);
   padding: 2rem;
@@ -165,6 +171,7 @@ input[type="date"],
 input[type="number"],
 input[type="password"],
 input[type="email"],
+input[type="file"],
 select,
 textarea {
   width: 100%;
@@ -176,7 +183,7 @@ textarea {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus, select:focus, textarea:focus, input[type="file"]:focus {
   outline: none;
   border-color: var(--cor-destaque);
   box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
@@ -240,10 +247,11 @@ tbody tr:hover {
   background-color: #e3f2fd;
 }
 
-td:last-child {
+.actions-container {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 td button {
@@ -266,6 +274,23 @@ td button[onclick*="editar"], td button[onclick*="excluirUsuario"] {
 
 td button[onclick*="excluir"] {
   background-color: var(--cor-perigo);
+}
+
+td button[onclick*="gerenciarDocumentos"] {
+  background-color: var(--cor-aviso);
+  color: #333;
+}
+
+td button[onclick*="gerenciarSupervisores"] {
+    background-color: var(--cor-info);
+}
+
+td button[onclick*="candidatarVaga"] {
+    background-color: var(--cor-sucesso);
+}
+
+td button[onclick*="desistirVaga"] {
+    background-color: var(--cor-perigo);
 }
 
 
@@ -405,7 +430,127 @@ td button[onclick*="excluir"] {
   border-bottom: none;
 }
 
-/* 8. Responsividade */
+/* 8. Estilos do Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    border-radius: var(--raio-borda);
+    box-shadow: 0 5px 15px var(--cor-sombra);
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-close {
+    color: #aaa;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-close:hover, .modal-close:focus {
+    color: #333;
+}
+
+#lista-documentos, #lista-supervisores {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+#lista-documentos li, #lista-supervisores li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    margin-bottom: 0.5rem;
+}
+
+#lista-documentos a, #lista-supervisores .supervisor-info {
+    text-decoration: none;
+    color: var(--cor-destaque);
+    font-weight: 600;
+}
+
+#lista-supervisores .supervisor-info {
+    color: var(--cor-texto);
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+}
+
+#lista-supervisores .supervisor-info strong {
+    font-weight: 600;
+}
+
+#lista-documentos button, #lista-supervisores button {
+    background-color: var(--cor-perigo);
+    padding: 0.3rem 0.7rem;
+}
+
+#form-upload, #form-novo-supervisor {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cor-borda);
+}
+
+/* 9. Estilos das Abas (Tabs) */
+.tabs-container {
+    display: flex;
+    border-bottom: 2px solid var(--cor-borda);
+    margin-bottom: 2rem;
+}
+.tab-button {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cor-secundaria);
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+.tab-button.active {
+    color: var(--cor-primaria);
+    border-bottom: 3px solid var(--cor-primaria);
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+/* 10. Responsividade */
 @media (max-width: 1024px) {
   .dashboard-main-content {
       grid-template-columns: 1fr;
@@ -438,5 +583,10 @@ td button[onclick*="excluir"] {
 
   .dashboard-charts-container {
     grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+      width: 95%;
+      margin: 20% auto;
   }
 }

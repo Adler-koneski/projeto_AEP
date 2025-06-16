@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-   
-    if (sessionStorage.getItem('usuarioLogado') !== 'admin') {
+    // Guarda de segurança específico para esta página
+    if (sessionStorage.getItem('perfilUsuario') !== 'administrador') {
         alert('Acesso negado. Apenas administradores podem acessar esta página.');
         window.location.replace('index.html');
         return;
@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabelaBody = document.querySelector('#tabelaUsuarios tbody');
 
     function carregarUsuarios() {
-        return JSON.parse(localStorage.getItem('usuarios')) || [];
+        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        if (!usuarios.some(u => u.username === 'admin')) {
+          usuarios.unshift({ username: 'admin', password: '1234', profile: 'administrador' });
+        }
+        return usuarios;
     }
 
     function salvarUsuarios(usuarios) {
@@ -22,12 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
         tabelaBody.innerHTML = '';
 
         usuarios.forEach(user => {
-            // Não exibe o usuário 'admin' na lista para não ser excluído
-            if (user.username === 'admin') return;
+            if (user.profile === 'administrador') return; // Não exibe o admin na lista
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${user.username}</td>
+                <td>${user.profile}</td>
                 <td>
                     <button onclick="excluirUsuario('${user.username}')">Excluir</button>
                 </td>
@@ -50,21 +54,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const novoUsername = document.getElementById('novoUsername').value;
         const novaSenha = document.getElementById('novaSenha').value;
+        const perfil = document.getElementById('novoPerfil').value;
 
-        if (!novoUsername || !novaSenha) {
+        if (!novoUsername || !novaSenha || !perfil) {
             alert('Por favor, preencha todos os campos.');
             return;
         }
 
         let usuarios = carregarUsuarios();
 
-        
         if (usuarios.some(u => u.username === novoUsername)) {
             alert('Este nome de usuário já existe. Por favor, escolha outro.');
             return;
         }
 
-        usuarios.push({ username: novoUsername, password: novaSenha });
+        usuarios.push({ username: novoUsername, password: novaSenha, profile: perfil });
         salvarUsuarios(usuarios);
 
         alert('Usuário cadastrado com sucesso!');
@@ -72,6 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
         atualizarTabela();
     });
 
-    
+    // Inicializa a tabela
     atualizarTabela();
 });

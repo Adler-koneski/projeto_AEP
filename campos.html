@@ -57,6 +57,27 @@
     </section>
   </main>
 
+  <div id="modal-supervisores" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Supervisores de <span id="modal-campo-nome"></span></h2>
+        
+        <div>
+            <h3>Supervisores Atuais</h3>
+            <ul id="lista-supervisores">
+                </ul>
+        </div>
+        
+        <form id="form-novo-supervisor">
+            <h3>Adicionar Novo Supervisor</h3>
+            <input type="text" id="novo-supervisor-nome" placeholder="Nome do Supervisor" required>
+            <input type="text" id="novo-supervisor-contato" placeholder="Contato (email ou telefone)" required>
+            <input type="text" id="novo-supervisor-especialidade" placeholder="Especialidade" required>
+            <button type="submit">Adicionar Supervisor</button>
+        </form>
+    </div>
+  </div>
+
   <script src="js/campos.js"></script>
   <script src="js/main.js"></script>
 </body>

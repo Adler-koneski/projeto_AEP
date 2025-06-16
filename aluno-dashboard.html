@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script src="js/auth.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal do Aluno</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Portal do Aluno</h1>
+    <nav>
+      <a href="#" id="logout-button">Sair <span class="material-icons">logout</span></a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="full-width-container">
+        
+        <div class="tabs-container">
+            <button class="tab-button active" data-tab="meus-dados">Meus Dados</button>
+            <button class="tab-button" data-tab="vagas">Vagas de Estágio</button>
+        </div>
+
+        <div id="meus-dados" class="tab-content active">
+            <section class="form-section">
+                <h2>Minhas Informações</h2>
+                <p>Mantenha seus dados sempre atualizados.</p>
+                <form id="formAluno" style="margin-top: 1rem;">
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <input type="text" id="nome" placeholder="Nome Completo" required>
+                        <input type="email" id="email" placeholder="E-mail" readonly>
+                        <input type="text" id="cpf" placeholder="CPF">
+                        <input type="text" id="rg" placeholder="RG">
+                        <input type="date" id="nascimento" placeholder="Data de Nascimento">
+                        <input type="text" id="contato" placeholder="Telefone de Contato">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Dados Acadêmicos</legend>
+                        <input type="text" id="curso" placeholder="Curso">
+                        <input type="text" id="matricula" placeholder="Matrícula">
+                        <input type="text" id="periodo" placeholder="Período">
+                        <input type="text" id="instituicao" placeholder="Instituição de Ensino">
+                    </fieldset>
+                    <button type="submit">Salvar Alterações</button>
+                </form>
+            </section>
+        </div>
+
+        <div id="vagas" class="tab-content">
+            <section class="list-section">
+                <h2>Vagas de Estágio Disponíveis</h2>
+                <p>Veja as vagas abertas e candidate-se.</p>
+                <table id="tabelaVagas" style="margin-top: 1rem;">
+                    <thead>
+                    <tr>
+                        <th>Área</th>
+                        <th>Campo de Estágio</th>
+                        <th>Período</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+    </div>
+  </main>
+
+  <script src="js/aluno-dashboard.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

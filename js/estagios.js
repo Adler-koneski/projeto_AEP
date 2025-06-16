@@ -71,7 +71,7 @@ function atualizarTabelaEstagios() {
       <td>${estagio.status}</td>
       <td>${estagio.inicio || '-'}</td>
       <td>${estagio.termino || '-'}</td>
-      <td>${acoesHtml}</td>
+      <td><div class="actions-container">${acoesHtml}</div></td>
     `;
     tbody.appendChild(tr);
   });
@@ -107,6 +107,8 @@ document.getElementById('formEstagio').addEventListener('submit', function(e) {
 
   const id = this.getAttribute('data-id') || gerarId();
   const usuarioLogado = sessionStorage.getItem('usuarioLogado');
+  const estagios = carregarEstagios();
+  const existente = estagios.find(e => e.id === id);
 
   const estagio = {
     id,
@@ -117,10 +119,9 @@ document.getElementById('formEstagio').addEventListener('submit', function(e) {
     termino: document.getElementById('termino').value,
     avaliacao: document.getElementById('avaliacao').value,
     ocorrencias: document.getElementById('ocorrencias').value,
-    createdBy: this.getAttribute('data-id') ? carregarEstagios().find(e => e.id === id).createdBy : usuarioLogado
+    createdBy: existente ? existente.createdBy : usuarioLogado
   };
 
-  let estagios = carregarEstagios();
   const existenteIndex = estagios.findIndex(e => e.id === id);
 
   if (existenteIndex >= 0) {
