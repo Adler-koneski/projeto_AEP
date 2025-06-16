@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Gestão de Estágios Saúde</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -16,15 +17,23 @@
       <a href="campos.html">Campos de Estágio</a>
       <a href="vagas.html">Vagas</a>
       <a href="estagios.html">Estágios</a>
+      <a href="admin.html" id="admin-panel-link" style="display: none;">Admin <span class="material-icons">admin_panel_settings</span></a>
       <a href="#" id="logout-button">Sair <span class="material-icons">logout</span></a>
     </nav>
   </header>
 
   <main class="container">
     <div class="dashboard">
-      <h2>Painel de Controle</h2>
+
+      <div class="dashboard-header">
+        <h2>Painel de Controle <span id="welcome-message"></span></h2>
+        <div class="quick-actions">
+          <a href="alunos.html">+ Adicionar Aluno</a>
+          <a href="vagas.html">+ Adicionar Vaga</a>
+        </div>
+      </div>
+      
       <div class="dashboard-cards">
-        
         <div class="card">
           <div class="card-icon"><span class="material-icons">school</span></div>
           <div class="card-info">
@@ -60,8 +69,27 @@
           </div>
            <a href="estagios.html" class="card-link">Gerenciar</a>
         </div>
-
       </div>
+
+      <div class="dashboard-main-content">
+        <div class="dashboard-charts-container">
+            <div class="chart-card">
+                <h3>Status dos Estágios</h3>
+                <canvas id="graficoStatusEstagios"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Vagas por Área</h3>
+                <canvas id="graficoVagasPorArea"></canvas>
+            </div>
+        </div>
+
+        <div class="recent-activity-card">
+            <h3>Últimos Alunos Cadastrados</h3>
+            <ul id="lista-ultimos-alunos">
+                </ul>
+        </div>
+      </div>
+
     </div>
   </main>
 

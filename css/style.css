@@ -87,8 +87,8 @@ nav a.active::after {
   background-color: #fff;
 }
 
-/* Estilo para o botão de Sair */
-#logout-button {
+/* Estilo para o botão de Sair e Admin */
+#logout-button, #admin-panel-link {
   background-color: var(--cor-perigo);
   padding: 8px 15px;
   border-radius: var(--raio-borda);
@@ -96,11 +96,19 @@ nav a.active::after {
   align-items: center;
   gap: 0.5rem;
 }
-#logout-button:hover {
+#logout-button:hover, #admin-panel-link:hover {
   background-color: #c82333;
   color: var(--cor-texto-claro) !important;
 }
-#logout-button .material-icons {
+
+#admin-panel-link {
+    background-color: var(--cor-secundaria);
+}
+#admin-panel-link:hover {
+    background-color: var(--cor-primaria);
+}
+
+#logout-button .material-icons, #admin-panel-link .material-icons {
   font-size: 1rem;
 }
 
@@ -252,7 +260,7 @@ td button:hover {
   opacity: 0.85;
 }
 
-td button[onclick*="editar"] {
+td button[onclick*="editar"], td button[onclick*="excluirUsuario"] {
   background-color: var(--cor-destaque);
 }
 
@@ -264,17 +272,52 @@ td button[onclick*="excluir"] {
 /* 7. Estilos do Dashboard */
 .dashboard {
   grid-column: 1 / -1; 
-  background-color: var(--cor-container);
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard-header h2 #welcome-message {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.quick-actions a {
+  background-color: var(--cor-destaque);
+  color: var(--cor-texto-claro);
+  padding: 0.6rem 1.2rem;
   border-radius: var(--raio-borda);
-  box-shadow: 0 2px 10px var(--cor-sombra);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+.quick-actions a:hover {
+  background-color: var(--cor-secundaria);
+}
+
+.dashboard-main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
 }
 
 .dashboard-cards {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 
 .card {
@@ -329,7 +372,46 @@ td button[onclick*="excluir"] {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+.dashboard-charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.chart-card, .recent-activity-card {
+  background-color: var(--cor-container);
+  padding: 1.5rem;
+  border-radius: var(--raio-borda);
+  box-shadow: 0 2px 10px var(--cor-sombra);
+}
+
+.chart-card h3, .recent-activity-card h3 {
+  color: var(--cor-primaria);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.recent-activity-card ul {
+  list-style-type: none;
+}
+
+.recent-activity-card li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--cor-fundo);
+  font-size: 0.95rem;
+}
+
+.recent-activity-card li:last-child {
+  border-bottom: none;
+}
+
 /* 8. Responsividade */
+@media (max-width: 1024px) {
+  .dashboard-main-content {
+      grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 992px) {
   .container {
     grid-template-columns: 1fr;
@@ -352,5 +434,9 @@ td button[onclick*="excluir"] {
 
   header nav a {
     margin-left: 0;
+  }
+
+  .dashboard-charts-container {
+    grid-template-columns: 1fr;
   }
 }

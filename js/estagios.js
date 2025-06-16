@@ -23,7 +23,6 @@ function gerarId() {
 function preencherSelects() {
   const alunos = carregarAlunos();
   const vagas = carregarVagas();
-
   const selAluno = document.getElementById('aluno');
   const selVaga = document.getElementById('vaga');
 
@@ -50,23 +49,29 @@ function atualizarTabelaEstagios() {
   const alunos = carregarAlunos();
   const vagas = carregarVagas();
   const tbody = document.querySelector('#tabelaEstagios tbody');
-
+  const usuarioLogado = sessionStorage.getItem('usuarioLogado');
   tbody.innerHTML = '';
+
   estagios.forEach(estagio => {
     const aluno = alunos.find(a => a.id === estagio.alunoId);
     const vaga = vagas.find(v => v.id === estagio.vagaId);
-
     const tr = document.createElement('tr');
+    
+    let acoesHtml = '';
+    if(usuarioLogado === 'admin' || estagio.createdBy === usuarioLogado) {
+        acoesHtml = `
+            <button onclick="editarEstagio('${estagio.id}')">Editar</button>
+            <button onclick="excluirEstagio('${estagio.id}')">Excluir</button>
+        `;
+    }
+
     tr.innerHTML = `
       <td>${aluno ? aluno.nome : 'N/D'}</td>
       <td>${vaga ? vaga.area : 'N/D'}</td>
       <td>${estagio.status}</td>
       <td>${estagio.inicio || '-'}</td>
       <td>${estagio.termino || '-'}</td>
-      <td>
-        <button onclick="editarEstagio('${estagio.id}')">Editar</button>
-        <button onclick="excluirEstagio('${estagio.id}')">Excluir</button>
-      </td>
+      <td>${acoesHtml}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -85,7 +90,6 @@ function editarEstagio(id) {
   document.getElementById('termino').value = estagio.termino;
   document.getElementById('avaliacao').value = estagio.avaliacao;
   document.getElementById('ocorrencias').value = estagio.ocorrencias;
-
   document.getElementById('formEstagio').setAttribute('data-id', id);
 }
 
@@ -102,6 +106,8 @@ document.getElementById('formEstagio').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const id = this.getAttribute('data-id') || gerarId();
+  const usuarioLogado = sessionStorage.getItem('usuarioLogado');
+
   const estagio = {
     id,
     alunoId: document.getElementById('aluno').value,
@@ -110,14 +116,15 @@ document.getElementById('formEstagio').addEventListener('submit', function(e) {
     inicio: document.getElementById('inicio').value,
     termino: document.getElementById('termino').value,
     avaliacao: document.getElementById('avaliacao').value,
-    ocorrencias: document.getElementById('ocorrencias').value
+    ocorrencias: document.getElementById('ocorrencias').value,
+    createdBy: this.getAttribute('data-id') ? carregarEstagios().find(e => e.id === id).createdBy : usuarioLogado
   };
 
   let estagios = carregarEstagios();
-  const existente = estagios.findIndex(e => e.id === id);
+  const existenteIndex = estagios.findIndex(e => e.id === id);
 
-  if (existente >= 0) {
-    estagios[existente] = estagio;
+  if (existenteIndex >= 0) {
+    estagios[existenteIndex] = estagio;
   } else {
     estagios.push(estagio);
   }

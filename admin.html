@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script src="js/auth.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Administração</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Painel de Administração</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="alunos.html">Alunos</a>
+      <a href="campos.html">Campos de Estágio</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="estagios.html">Estágios</a>
+      <a href="admin.html" id="admin-panel-link" class="active" style="display: none;">Admin <span class="material-icons">admin_panel_settings</span></a>
+      <a href="#" id="logout-button">Sair <span class="material-icons">logout</span></a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="form-section">
+      <h2>Cadastrar Novo Usuário</h2>
+      <form id="formNovoUsuario">
+        <fieldset>
+          <legend>Dados do Novo Usuário</legend>
+          <input type="text" id="novoUsername" placeholder="Nome de usuário" required>
+          <input type="password" id="novaSenha" placeholder="Senha" required>
+        </fieldset>
+        <button type="submit">Salvar Usuário</button>
+      </form>
+    </section>
+
+    <section class="list-section">
+      <h2>Usuários Cadastrados</h2>
+      <table id="tabelaUsuarios">
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/admin.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

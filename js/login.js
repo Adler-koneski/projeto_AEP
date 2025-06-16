@@ -2,27 +2,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
 
-  // Define as credenciais corretas (em um app real, viria do servidor)
-  const USUARIO_CORRETO = 'admin';
-  const SENHA_CORRETA = '1234';
+  // Carrega a lista de usuários do localStorage
+  function carregarUsuarios() {
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    // Garante que o usuário 'admin' sempre exista
+    if (!usuarios.some(u => u.username === 'admin')) {
+      usuarios.unshift({ username: 'admin', password: '1234' });
+    }
+    return usuarios;
+  }
 
   loginForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Impede o envio do formulário
+    e.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const usernameInput = document.getElementById('username').value;
+    const passwordInput = document.getElementById('password').value;
+    
+    const usuarios = carregarUsuarios();
+    
+    // Procura o usuário na lista
+    const usuarioEncontrado = usuarios.find(user => user.username === usernameInput && user.password === passwordInput);
 
-    if (username === USUARIO_CORRETO && password === SENHA_CORRETA) {
+    if (usuarioEncontrado) {
       // Login bem-sucedido
-      // Usamos sessionStorage: o login dura até o fechamento da aba/navegador
-      sessionStorage.setItem('usuarioLogado', 'true');
-
-      // Redireciona para o dashboard
+      // Armazena o NOME do usuário na sessão para controle de permissão
+      sessionStorage.setItem('usuarioLogado', usuarioEncontrado.username);
       window.location.href = 'index.html';
     } else {
       // Login falhou
       errorMessage.textContent = 'Usuário ou senha inválidos.';
-      // Limpa o campo de senha
       document.getElementById('password').value = '';
     }
   });
